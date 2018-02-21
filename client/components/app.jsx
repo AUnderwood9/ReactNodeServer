@@ -1,36 +1,22 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import ChirpListing from "./component-containers/ChirpListing";
+import AddChirp from "./component-pieces/AddChirp";
 
 class Navigation extends Component{
-    constructor(props){
-        super(props);
-
-        this.state = {
-            chirps: []
-        }
-    }
-    componentDidMount(){
-        fetch("/api/chirps", {
-            method: "GET",
-        })
-        .then((response) => {
-            let responseData = response.json();
-            // console.log(responseData);
-            responseData.then((data) => {
-                // console.log(data);
-                this.setState({ chirps: data })
-            })
-            // return response;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    }
-
     render(){
+        console.log("Rendering main");
         return (
-            <ChirpListing chirpList = {this.state}/>
+            <Router>
+                <Fragment>
+                    <Link to="/addchirp">Add a new chirp</Link>
+                    <Route path="/" component={ChirpListing} />
+                    <Switch>
+                        <Route path="/addchirp" component={AddChirp}/>
+                    </Switch>
+                </Fragment>
+            </Router>
+            // <ChirpListing chirpList = {this.state}/>
         );
     }
 }
