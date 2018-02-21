@@ -1,5 +1,5 @@
 const express = require("express");
-const chirpStore = require("../chirpsstore");
+const chirpStore = require("../chirpsstorearray");
 
 let router = express.Router();
 
