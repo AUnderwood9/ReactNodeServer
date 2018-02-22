@@ -32,8 +32,7 @@ class EditChirp extends Component{
             body: JSON.stringify(this.state)
         });
 
-        // this.props.history.push("/", null);
-        this.props.history.goBack();
+        this.props.history.push("/");
     }
 
 

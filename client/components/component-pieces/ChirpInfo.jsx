@@ -38,9 +38,8 @@ class ChirpInfo extends Component{
 
         // this.props.history.back();
         console.log(this.props.history.location);
-        // this.props.history.push("/", null);
-        this.props.history.goBack();
-        this.props.history.goBack();
+        
+        this.props.history.push("/");
 
     }
 
