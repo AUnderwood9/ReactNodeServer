@@ -19,39 +19,25 @@ class ChripListing extends Component{
         })
         .then((response) => {
             let responseData = response.json();
-            // console.log(responseData);
             responseData.then((data) => {
-                // console.log(data);
                 this.setState({ chirps: data })
             })
-            // return response;
         })
         .catch((err) => {
             console.log(err);
         });
     }
     render(){
-        // console.log(this.props.history.location);
         return(
             <div>
                 <h1>Whats up world!</h1>
                 {this.state.chirps.map((item, index) => {
-                    // console.log(item);
                 return (
                             <Fragment key={`chirp-container-${index}`}>
                                 <Chirp currentChirp={{id: index, chirp: item}}/>
-                                <Router>
-                                    <Fragment>
-                                        <Link to={`/chirp/${index}`} replace >See more details</Link>
-                                        <Switch>
-                                            <Route exact path="/chirp/:id" component={ChirpInfo} />
-                                            {/* <Redirect to="/chirp/:id" Component={ChirpInfo} /> */}
-                                        </Switch>
-                                    </Fragment>
-                                </Router>
+                                <Link to={`/chirp/${index}`}>See more details</Link>
                             </Fragment>
                         );
-                    // <Chirp key={`chirp-container-${index}`} currentChirp={{id: index, chirp: item}}/>
                 })} 
             </div>
         )

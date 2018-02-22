@@ -1,37 +1,5 @@
 import React, { Component } from "react";
 
-// let userText;
-// let commentText;
-
-// let handleClick = (chirp, props) => {
-//     let d = new Date();
-//     let currentTime = d.toDateString() + " " + d.toLocaleTimeString();
-//     // chirp.usr = userText;
-//     // chirp.comment = comment;
-//     chirp.timeStamp = currentTime;
-//     console.log(chirp); 
-
-//     fetch('/api/chirps/', {
-//         method: 'POST', 
-//         mode: 'cors', 
-//         redirect: 'follow',
-//         headers: new Headers({
-//             'Content-Type': 'application/json'
-//         }),
-//         body: JSON.stringify(chirp)
-//     });
-
-//     props.history.back();
-// }
-
-// return(
-//     <div>
-//         <input type="text" name="usr" id="" onChange={(event) => { userText = event.target.value }}/>
-//         <input type="text" name="comment" id="" onChange={(event) => { commentText = event.target.value }}/>
-//         <button onClick={() => {handleClick({usr: userText, comment: commentText}, props)}}>Add the chirp luke...</button>
-//     </div>
-// );
-
 class AddChirp extends Component{
     constructor(props){
         super(props);
@@ -44,11 +12,7 @@ class AddChirp extends Component{
         console.log(this.state);
         let d = new Date();
         let currentTime = d.toDateString() + " " + d.toLocaleTimeString();
-        // chirp.usr = userText;
-        // chirp.comment = comment;
-        // chirp.timeStamp = currentTime;
-        this.setState({ timeStamp: currentTime });
-        // console.log(chirp); 
+        let chirpToAdd = Object.assign({}, this.state, { timeStamp: currentTime });
 
         fetch('/api/chirps/', {
             method: 'POST', 
@@ -57,7 +21,7 @@ class AddChirp extends Component{
             headers: new Headers({
                 'Content-Type': 'application/json'
             }),
-            body: JSON.stringify(this.state)
+            body: JSON.stringify(chirpToAdd)
         });
 
         this.props.history.push("/");

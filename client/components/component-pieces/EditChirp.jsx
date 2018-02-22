@@ -8,19 +8,11 @@ class EditChirp extends Component{
     }
 
     handleClick(){
-        // console.log("Clicking");
         console.log(this.state);
         let d = new Date();
         let currentTime = d.toDateString() + " " + d.toLocaleTimeString();
-        // chirp.usr = userText;
-        // chirp.comment = comment;
-        // chirp.timeStamp = currentTime;
-        // console.log(currentTime);
-        this.setState({ timeStamp: currentTime });
-        console.log(this.state);
-        // console.log(chirp); 
+        let chirpToAdd = Object.assign({}, this.state, { timeStamp: currentTime });
 
-        console.log(this.props);
 
         fetch(`/api/chirps/${this.props.match.params.id}`, {
             method: 'PUT', 
@@ -29,7 +21,7 @@ class EditChirp extends Component{
             headers: new Headers({
                 'Content-Type': 'application/json'
             }),
-            body: JSON.stringify(this.state)
+            body: JSON.stringify(chirpToAdd)
         });
 
         this.props.history.push("/");
